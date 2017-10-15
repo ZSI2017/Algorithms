@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="./Dictionary.js"></script>
+  </head>
+  <body>
+     <script>
+       var pbook = new Dictionary();
+       pbook.add('mike','123');
+       pbook.add('David','4444');
+       pbook.add('Cynthia','5555');
+       console.log("David's extension: "+pbook.find("David"));
+       pbook.remove("David");
+       pbook.showAll();
+      //  console.log("number of entries: "+ pbook.count())
+       pbook.clear();
+       console.log("number of entries: "+ pbook.count())
+      //   pbook.showAll();
+     </script>
+  </body>
+</html>

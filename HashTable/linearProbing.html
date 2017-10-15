@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>线性探测法</title>
+    <script src="./HashTable.js"></script>
+  </head>
+  <body>
+      <p> 线性探测法</p>
+      <script>
+          var hTable = new HashTable();
+          var someName = ["David","Jennifer","Donnie","Raymond","Cynthia","Mike","Clayton","Danny","Jonathan"];
+          for(var i =0;i<someName.length;++i) {
+             hTable.putLinear(someName[i]);
+          }
+          hTable.showDistro()
+      </script>
+  </body>
+</html>

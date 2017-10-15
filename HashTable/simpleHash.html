@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>simpleHash</title>
+    <script src="./HashTable.js"></script>
+  </head>
+  <body>
+      <p> 一个简单的 hashTable</p>
+      <script>
+           var someName = ["David","Jennifer","Donnie","Raymond","Cynthia","Mike","Clayton","Danny","Jonathan"];
+           var hTable = new HashTable();
+           for(var i =0;i<someName.length;++i) {
+              hTable.put(someName[i]);
+           }
+           hTable.showDistro();
+      </script>
+  </body>
+</html>

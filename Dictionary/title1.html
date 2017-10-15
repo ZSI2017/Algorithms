@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>title</title>
+    <script src= "./Dictionary.js"> </script>
+  </head>
+  <body>
+    <p>存储一段文本中每个单词出现的次数</p>
+    <input id="text" placeholder="请输入一段英文">
+     <button id="run">统计一下</button>
+     <div id="result"></div>
+    <script>
+       (function(){
+         var inputText = document.getElementById('text');
+         var btn = document.getElementById('run');
+         var result = document.getElementById('result');
+         var pbook = new Dictionary();
+         btn.onclick = function(){
+             result.innerHTML = "";
+             var text = inputText.value;
+             var textArr = text.split(/\s/);
+             console.log(textArr.sort());
+             textArr.forEach(function(value,index){
+                 console.log(pbook.find(value))
+                 var current = pbook.find(value)
+                 if(current) {
+                   pbook.add(value,current+1);
+                 }else {
+                   pbook.add(value,1);
+                 }
+             })
+             pbook.remove();
+             result.innerHTML =  pbook.showAllSort();
+         }
+
+
+       })()
+
+    </script>
+  </body>
+</html>
