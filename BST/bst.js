@@ -3,6 +3,7 @@ function Node(data,left,right) {
    this.left = left;
    this.right = right;
    this.show = show;
+   this.count = 1;
 }
 
 function show() {
@@ -15,6 +16,7 @@ function BST() {
     this.inOrder = inOrder;
     this.getMin = getMin;
     this.getMax = getMax;
+    this.find = find;
 }
 
 function insert(data) {
@@ -90,3 +92,81 @@ function getMax() {
    }
   return current.data;
 }
+
+// 查找给定值
+function find(data) {
+   var current = this.root;
+   while(current != null) {
+      if(current.data == data) {
+         return data;
+      }else if(current.data>data){
+          current = current.left;
+      }else {
+         current = current.right;
+      }
+   }
+}
+
+// 从二叉查找树上删除节点
+ function remove(){
+    root = removeNode(this.root,data);
+ }
+
+ function removeNode(node,data) {
+   if(node == null) {
+      return null;
+    }
+    if(data == node.data) {
+        // 没有子节点的节点
+        if(node.left == null && node.right == null) {
+             return nulll;
+        }
+        // 没有左子节点的节点
+        if(node.left == null) {
+            return node.right;
+        }
+        // 没有右子节点的节点
+        if(node.right == null) {
+           return node.left;
+        }
+        // 有两个节点的节点
+        var tempNode = getSmallest(node.right);
+        node.data = tempNode.data;
+        node.right = removeNode(node.right,tempNode.data);
+        return node;
+    }
+    else if(data<node.data) {
+       node.left = removeNode(node.left,data);
+       return node;
+    }else {
+       node.right = removeNode(node.right,data);
+       return node;
+    }
+ };
+
+ // BST 统计出现次数 可以在每个node 节点中实现yige count = 1;
+  function update(data) {
+     var grade = this.find(data);
+     grade.count++;
+     return grade;
+  }
+
+// 增加了可以随机产生成绩 以及可以展示成绩的方法
+ function prArray(arr) {
+    console.log(arr[0].toString() +" ");
+  for(var i =1;i<arr.length;i++){
+    console.log(arr[i].toString() + " ");
+    if(i%10 == 0) {
+      console.log("\n");
+    }
+  }
+ }
+
+// 随机生产出成绩 吧吧吧
+ function genArray(length) {
+    var arr = [];
+    for(var i =0;i<length;i++) {
+       arr[i] = Math.floor(Math.random() * 101);
+    }
+    return arr;
+ }
