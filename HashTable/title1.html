@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>8.4 练习</title>
+    <script src="./HashTable.js"></script>
+  </head>
+  <body>
+     <p> 使用线性探测法创建一个字典，用来保存单词的定义。 </p>
+     <article>
+         该部分包含两个部分，第一部分从文本文件中读取一个单词和他们的定义，并将其存入散列表，
+                            第二部分让用户输入单词，程序给出该单词的定义
+     </article>
+     <p>  思路1： 单词存入散列表中是 将每个字母对应的码相加，得到序列号， 文本读取部分直接利用JSON格式的字符串</p>
+
+     <input id="wordBak" type="text" name="word" value="">
+     <input id="contentBak" type="text" name="content" value="">
+     <button id='btn2' type="button" name="button">
+           记忆一下
+     </button>
+   </br></br></br></br></br></br>
+     <input type="text" name="" id="word"  value="">
+     <button type="button" name="button" id="btn">查询一下</button>
+     <div id="content">
+         查询结果。。。
+     </div>
+
+
+     <script>
+      var txt = document.getElementById('word')
+      var btn = document.getElementById('btn');
+      var content = document.getElementById('content');
+
+      var wordBak = document.getElementById('wordBak')
+      var contentBak = document.getElementById('contentBak');
+      var btn2 = document.getElementById('btn2');
+
+       var  dictionary = {
+            "red":"红",
+            "book":"书",
+            "title":"标题",
+            "section":"部分，内容",
+       }
+       var hTable = new HashTable();
+       for(i in dictionary){
+           hTable.putLinear(dictionary[i],i);
+       }
+       hTable.showDistro();
+     btn.addEventListener('click',function(){
+              var value = txt.value;
+              content.innerHTML = '';
+              content.innerHTML = hTable.get(value)
+     },false);
+     btn2.addEventListener('click',function(){
+            var word1 = wordBak.value;
+            var content1 = contentBak.value;
+             hTable.putLinear(content1,word1);
+             alert('保存成功！')
+     },false)
+
+     console.log(hTable.getLinear('red'))
+     console.log(hTable.get("red"))
+     </script>
+  </body>
+</html>
