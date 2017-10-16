@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>练习10.6.2</title>
+    <script src="./bst.js"></script>
+  </head>
+  <body>
+     <p>统计BST 中边的个数</p>
+     <script>
+         var myCount = new BST();
+         myCount.insert(23);
+         myCount.insert(45);
+         myCount.insert(16);
+         myCount.insert(37);
+         myCount.insert(3);
+         myCount.insert(99);
+         myCount.insert(22);
+
+        // 计算节点个数的函数，在BST 上设置一个变量 count ,来统计节点个数
+         function allEdge(node){
+         //  console.log(myCount.count);
+            if(node.left !=null) {
+              alZlEdge(node.left,++myCount.edge)
+            }
+            if(node.right != null){
+              allEdge(node.right,++myCount.edge);
+            }
+         }
+         myCount.allEdge = allEdge;
+         myCount.allEdge(myCount.root);
+         console.log(myCount.edge);
+
+     </script>
+
+  </body>
+</html>
