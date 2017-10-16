@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>构建图</title>
+    <script src="./Graph.js"></script>
+  </head>
+  <body>
+       <p>addEdge 添加边 使用邻接表来构建图，分别在每个定点对应的数组中，来表示有哪几个点会与自己相互连接</p>
+       <p> Vertex 类来表示顶点</p>
+       <script>
+           var g = new Graph(5);
+           g.addEdge(0,1);
+           g.addEdge(0,2);
+           g.addEdge(1,3);
+           g.addEdge(2,4);
+           g.showGraph();
+       </script>
+  </body>
+</html>
