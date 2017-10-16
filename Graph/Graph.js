@@ -49,6 +49,24 @@ function showGraph(){
    }
 }
 
+// 用于显示符号名字而非数字的新函数
+function showGraphString(){
+    var visited = [];
+    for(var i =0;i<this.vertices; ++i) {
+        console.log(this.vertexList[i]+ " ->");
+        visited.push(this.vertexList[i]);
+        for(var j = 0;j<this.vertices;++j) {
+           if(this.adj[i][j] != undefined) {
+              if(visited.indexOf(this.vertexList[j])<0){
+                 console.log(this.vertexList[j] + ' ');
+              }
+           }
+        }
+        // print()
+        visited.pop();
+    }
+}
+
 // 使用深度优先搜索的方式来 遍历图
 function dfs(v) {
     this.marked[v] = true;
