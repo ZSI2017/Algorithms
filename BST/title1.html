@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>10.6练习</title>
+    <script src="./bst.js"></script>
+  </head>
+  <body>
+    <p> 10.6 课后练习</p>
+    <p> 返回BST节点的个数</p>
+    <script>
+        var myCount = new BST();
+        myCount.insert(23);
+        myCount.insert(45);
+        myCount.insert(16);
+        myCount.insert(37);
+        myCount.insert(3);
+        myCount.insert(99);
+        myCount.insert(22);
+
+       // 计算节点个数的函数，在BST 上设置一个变量 count ,来统计节点个数
+        function allCount(node){
+        //  console.log(myCount.count);
+           if(node.left !=null) {
+             allCount(node.left,++myCount.count)
+           }
+           if(node.right != null){
+             allCount(node.right,++myCount.count);
+           }
+        }
+        myCount.allCount = allCount;
+        myCount.allCount(myCount.root,1);
+        console.log(myCount.count);
+
+    </script>
+  </body>
+</html>
