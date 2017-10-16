@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>BST 计数</title>
+    <script src="./bst.js"></script>
+  </head>
+  <body>
+    <p> 记录一组数据集中数据出现的次数</p>
+    <article>
+      情景描述：
+        给定一组考试成绩，写一段将他们加入一个BST，如果没有出现过的，就将其加入到BST,如果已经出现了，就将出现的次数加1；
+    </article>
+    <script>
+        // 首先随机生成成绩
+        var grades = genArray(10);
+        //展示 生成的成绩
+        prArray(grades);
+        var gradedistro = new BST();
+        for(var i = 0; i<grades.length;++i) {
+          var g = grades[i];
+          var grade = gradedistro.find(g);
+          if(grade == null) {
+            gradedistro.insert(g);
+          }else {
+            gradedistro.update(g);
+          }
+        }
+        inOrder(gradedistro.root)
+
+
+    </script>
+  </body>
+</html>
