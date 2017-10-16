@@ -21,7 +21,7 @@
          function allEdge(node){
          //  console.log(myCount.count);
             if(node.left !=null) {
-              alZlEdge(node.left,++myCount.edge)
+              allEdge(node.left,++myCount.edge)
             }
             if(node.right != null){
               allEdge(node.right,++myCount.edge);
