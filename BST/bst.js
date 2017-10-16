@@ -17,7 +17,14 @@ function BST() {
     this.getMin = getMin;
     this.getMax = getMax;
     this.find = find;
+    this.update = update
+
+    // 记录 BST 中 所有节点的个数
+    this.count = 1;
+    // 记录BST 中 所有边的个数
+    this.edge = 0;
 }
+
 
 function insert(data) {
    var n = new Node(data,null,null);
@@ -34,7 +41,6 @@ function insert(data) {
                parent.left = n;
                break;
             }
-
          }else {
             current = current.right;
             if(current == null) {
@@ -75,8 +81,13 @@ function postOrder(node) {
 }
 
 // 查找最小值
-function getMin() {
-    var current = this.root;
+function getMin(root) {
+  var current;
+  if(root) {
+     current = root;
+  }else {
+     current = this.root;
+  }
     console.log(this.root);
     while(!(current.left == null)) {
       current = current.left;
@@ -130,7 +141,7 @@ function find(data) {
            return node.left;
         }
         // 有两个节点的节点
-        var tempNode = getSmallest(node.right);
+        var tempNode = this.getMin(node.right);
         node.data = tempNode.data;
         node.right = removeNode(node.right,tempNode.data);
         return node;
@@ -160,9 +171,10 @@ function find(data) {
       console.log("\n");
     }
   }
+  console.log("\n");
  }
 
-// 随机生产出成绩 吧吧吧
+// 随机生产出成
  function genArray(length) {
     var arr = [];
     for(var i =0;i<length;i++) {
