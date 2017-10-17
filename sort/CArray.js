@@ -15,7 +15,7 @@ function CArray(numElements) {
 
      for(var i = 0;i<numElements;++i) {
         this.dataStore[i] = i;
-     }8
+     }
 }
 
 function setGaps(arr) {
