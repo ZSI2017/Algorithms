@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="sportUtilCopy.js"></script>
+    <title>Title</title>
+    <style>
+        body ul, li {
+            margin: 0;
+            padding: 0;
+
+        }
+
+        ul, li {
+            list-style: none;
+        }
+
+        #vertical li {
+            position: absolute;
+            top: 200px;
+            width: 30px;
+            height: 300px;
+            border-radius: 10px;
+            background: black;
+            border: 1px solid rebeccapurple;
+        }
+
+        #hor li {
+            position: absolute;
+            top: 500px;
+            width: 250px;
+            height: 30px;
+            background: blanchedalmond;
+            border: 1px solid black;
+        }
+
+    </style>
+</head>
+<body>
+<input type="text" value="环的个数" id="txt">
+<input type="button" value="开始运动" id="btn">
+<ul id="vertical">
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+<ul id="hor">
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+<script>
+    var t = document.getElementById("txt");
+    var b = document.getElementById("btn");
+    var lis1 = document.querySelectorAll("#vertical li");
+    var lis2 = document.querySelectorAll("#hor li");
+    var count;
+    var All = [];
+    All[0] = [], All[1] = [], All[2] = [];
+    for (var i = 0; i < lis1.length; i++) {
+        lis1[i].style.left = 300 * (i + 1) + "px";
+    }
+    for (var i = 0; i < lis2.length; i++) {
+        lis2[i].style.left = 300 * (i + 1) - 110 + "px";
+    }
+
+
+    var flag;
+    function sportMove(i, arr1, arr2) {
+
+        // All[arr1][All[arr1].length-i].style.visibility="hidden";
+        //document.body.removeChild(All[arr1][All[arr1].length-i]);
+        //while (flag) {
+        // flag = false;
+
+        move(All[arr1][All[arr1].length - 1], {top: 150}, function () {
+            var tli = parseInt(getStyle(lis1[arr2], "left"));
+            var Wid = parseInt(getStyle(All[arr1][All[arr1].length - 1], "width"));
+            var bet = Wid / 2 - 15;
+            var tList = tli - bet;
+            move(All[arr1][All[arr1].length - 1], {left: tList}, function () {
+                var count = All[arr2].length;
+                console.log(count);
+                // console.log(All);
+                var tTop = 500 - (count + 1) * 30;
+                move(All[arr1][All[arr1].length - 1], {top: tTop}, function () {
+                    All[arr2].push(All[arr1][All[arr1].length - 1]);
+                    All[arr1].pop();
+                    /* if (i == All[arr1].length) {
+
+                     All[arr1] = [];
+                     console.log(All[arr1]);
+                     // flag = true;
+                     }*/
+                });
+            })
+        })
+        // }
+    }
+    var sp = [];
+    function hanoc(n, a, b, c) {
+        if (n == 1) {
+            flag = true;
+            console.log(c);
+            sp.push([n, a, c]);
+            //alert("begin");
+            /*  setInterval(function () {
+             sportMove(sp[k][0], sp[k][1], sp[k][2]);
+
+             }, 2000)*/
+            /* sportMove(n, a, c);*/
+        } else {
+            hanoc(n - 1, a, c, b);
+            sp.push([n, a, c]);
+            /* sportMove(n, a, c);*/
+            hanoc(n - 1, b, a, c);
+        }
+    }
+    var clear;
+    b.onclick = function () {
+        clearInterval(clear);
+
+        count = parseInt(t.value);
+        for (var i = 0; i < count; i++) {
+            var temp = document.createElement("div");
+            temp.style.background = "grey";
+            temp.style.height = "25px";
+            temp.style.width = (250 - 20 * (i + 1)) + "px";
+            temp.style.position = "absolute";
+            temp.style.top = 500 - 30 * (i + 1) + "px";
+            temp.style.left = 300 - ((250 - 20 * (i + 1)) / 2 - 15) + "px";
+
+            All[0].push(temp);
+            document.body.appendChild(temp);
+        }
+
+
+        hanoc(count, 0, 1, 2);
+        console.log(sp);
+        if (sp.length) {
+            var k = 0;
+            clear = setInterval(function () {
+                sportMove(sp[k][0], sp[k][1], sp[k][2]);
+                k++;
+                if (k >= sp.length) {
+                    clearInterval(clear);
+                }
+            }, 1500);
+        }
+    }       // flag = true;
+
+</script>
+
+</body>
+</html>
