@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>贪吃蛇</title>
+    <script src="sportUtilCopy.js"></script>
+    <style>
+        #box {
+            width: 500px;
+            height: 600px;
+            background: black;
+            position: relative;
+            margin: 40px auto;
+        }
+
+        .b {
+            width: 9px;
+            height: 9px;
+            border: 1px solid cornflowerblue;
+            background: navajowhite;
+            position: absolute;
+            top: 0;
+            left: 0;
+
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <div id="begin" class="b">
+
+    </div>
+    <div class="b">
+
+    </div>
+    <div class="b">
+
+    </div>
+    <div class="b">
+
+    </div>
+    <div class="b">
+
+    </div>
+
+</div>
+
+<!--<input type="button" value="重新开始" id="btn">-->
+
+
+<script>
+    var box = document.getElementById("box");
+    var head = document.getElementById("begin");
+    var divs = document.getElementsByClassName("b");
+    var thor, tver;
+    var newLeft, newTop;
+    var newDiv;
+    var horflag = true, vertiflag = true;
+    document.onkeydown = function (e) {
+        switch (e.keyCode) {
+            case 37:
+                hor(0);
+                break;
+            case 38:
+                vertical(0);
+                break;
+            case 39:
+                hor(1);
+                break;
+            case 40:
+                vertical(1);
+                break;
+            default:
+                alert("wuxia");
+        }
+    }
+
+    function hor(chose) {
+        if (chose && horflag) {
+            horflag = false;
+            vertiflag = true;
+            move(head, {left: 490}, hui);
+        } else {
+            if (horflag) {
+                move(head, {left: 0}, hui);
+                horflag = false;
+                vertiflag = true;
+            }
+        }
+    }
+    function vertical(chose) {
+        if (chose && vertiflag) {
+            horflag = true;
+            vertiflag = false;
+            move(head, {top: 590}, hui)
+        } else {
+            if (vertiflag) {
+                horflag = true;
+                vertiflag = false;
+                move(head, {top: 0}, hui)
+            }
+        }
+    }
+    function hui() {
+        var tempT = divs[0].style.top;
+        var tempL = divs[0].style.left;
+             for(var i=divs.length-2;i>1;i--){
+                 if (divs[i].style.top == tempT && divs[i].style.left == tempL) {
+                     alert("把自己都吃了！！！");
+                 }
+
+             }
+        for (var i = divs.length - 2; i >= 1; i--) {
+            divs[i].style.top = getStyle(divs[i - 1], "top");
+            divs[i].style.left = getStyle(divs[i - 1], "left");
+        }
+        if (getStyle(divs[0], "top") == newTop && getStyle(divs[0], "left") == newLeft) {
+            box.removeChild(newDiv);
+            newDiv = null;
+            var after = document.createElement("div");
+            after.setAttribute("class", "b");
+            after.style.top = tempT;
+            after.style.left = tempL;
+            after.style.background = "red";
+            box.appendChild(after);
+            randomDiv();
+        }
+    }
+    function randomDiv() {
+        newTop = Math.floor(Math.random() * 59) * 10 + "px";
+        newLeft = Math.floor(Math.random() * 49) * 10 + "px";
+        newDiv = document.createElement("div");
+        newDiv.setAttribute("class", "b");
+        newDiv.style.top = newTop;
+        newDiv.style.left = newLeft;
+        box.appendChild(newDiv);
+    }
+    randomDiv();
+
+    /*   setInterval(function(divs){
+     for(var i=divs.length-1;i>=1;i--){
+     divs[i].style.top=getStyle(divs[i-1],"top");
+     divs[i].style.left=getStyle(divs[i-1],"left");
+     }
+     },500);*/
+
+
+</script>
+</body>
+</html>
