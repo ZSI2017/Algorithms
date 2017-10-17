@@ -10,6 +10,7 @@
       分别使用不同的间隔对数组进行插入排序，从远到近进行比较
     </pre>
     <script>
+       // 定义 希尔排序的函数
         function shellsort() {
            for(var g = 0;g<this.gaps.length;++g) {
               for(var i = this.gaps[g];i<this.dataStore.length;++i) {
@@ -21,6 +22,37 @@
               }
            }
         }
+    // 动态的计算间隔序列的希尔排序
+      function shelllsort1(){
+         var N = this.dataStore.length;
+         var h = 1;
+         while(h<N/3){
+            h = 3*h+1;
+         }
+         while(h>=1) {
+            for(var i = h;i<N;i++) {
+              for(var j = i;j>=h&&this.dataStore[j]<this.dataStore[j-h];j-=h) {
+                 this.swap(this.dataStore,j,j-h);
+              }
+            }
+            h = (h-1)/3;
+         }
+      }
+
+        var nums = new CArray(100);
+        nums.shellsort = shellsort;
+        nums.shelllsort1 = shelllsort1;
+        nums.setData();
+        console.log("希尔排序前： ");
+        console.log(nums.toString());
+        console.log("希尔排序中");
+        // nums.shelglsort();
+        nums.shelllsort1();
+        console.log("希尔排序后");
+        console.log(nums.toString());
+
+
+
     </script>
 
   </body>
