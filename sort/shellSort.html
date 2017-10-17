@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>希尔排序</title>
+    <script src="./CArray.js"></script>
+  </head>
+  <body>
+    <pre>
+      分别使用不同的间隔对数组进行插入排序，从远到近进行比较
+    </pre>
+    <script>
+        function shellsort() {
+           for(var g = 0;g<this.gaps.length;++g) {
+              for(var i = this.gaps[g];i<this.dataStore.length;++i) {
+                 var temp = this.dataStore[i];
+                 for(var j =i;j>=this.gaps[g] && this.dataStore[j-this.gaps[g]]>temp;j-=this.gaps[g]) {
+                     this.dataStore[j] = this.dataStore[j-this.gaps[g]];
+                 }
+                 this.dataStore[j] = temp;
+              }
+           }
+        }
+    </script>
+
+  </body>
+</html>
