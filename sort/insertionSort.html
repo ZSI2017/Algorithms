@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>插入排序</title>
+   <script src="./CArray.js"></script>
+  </head>
+  <body>
+     <p>从数组的第二项开始向后循环，通过将较大的数据移动到右侧，为数组左侧腾出位置</p>
+      <script>
+           function insertionSort(){
+              var temp,inner;
+              for(var outer = 1;outer <= this.dataStore.length-1;++outer) {
+                   temp = this.dataStore[outer];
+                   inner = outer;
+                   while(inner>0 && (this.dataStore[inner-1]>=temp)) {
+                      this.dataStore[inner] = this.dataStore[inner-1];
+                      --inner;
+                   }
+                   this.dataStore[inner] = temp;
+              }
+           }
+           var numElements = 10;
+           var myNums = new CArray(numElements);
+           myNums.insertionSort = insertionSort;
+           myNums.setData();
+           console.log(myNums.toString());
+           myNums.insertionSort();
+           console.log(myNums.toString());
+      </script>
+  </body>
+</html>
