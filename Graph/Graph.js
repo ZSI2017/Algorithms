@@ -131,7 +131,8 @@ function topSort() {
      }
   }
   for(var i =0;i<stack.length;i++) {
-     if(stack[i] != undefined && stack[i] != false) {
+     if(stack[i] != undefined) {
+       console.log(stack[i]);
         console.log(this.vertexList[stack[i]]);
      }
   }
@@ -139,10 +140,10 @@ function topSort() {
 
 function topSortHelper(v,visited,stack) {
    visited[v] = true;
-   for(var i in this.adj[v]){
-       if(!visited[this.adj[v][w]]) {
-          this.topSortHelper(visited[this.adj[v][w]],visited,stack);
+   for(var w in this.adj[v]){
+       if(!visited[this.adj[v][w]]&&this.adj[v][w] != "") {
+          this.topSortHelper(this.adj[v][w],visited,stack);
        }
    }
-   stack.push(v);
+   stack.push(Number(v));
 }
