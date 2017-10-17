@@ -2,9 +2,24 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>11-7 拓扑排序</title>
+    <script></script>
   </head>
   <body>
-    
+     <pre>
+         优先级约束调度，与深度优先搜索类似，
+     </pre>
+     <script>
+        var g  = new Graph(6);
+        g = new Graph(6);
+        g.addEdge(1,2);
+        g.addEdge(2,5);
+        g.addEdge(1,3);
+        g.addEdge(1,4);
+        g.addEdge(0,1);
+        g.vertexList = ["cs1","cs2","Data Structures","Assembly Language", "Operating Systems","Alogorithms"];
+        g.showGraph();
+        g.topSort();
+     </script>
   </body>
 </html>

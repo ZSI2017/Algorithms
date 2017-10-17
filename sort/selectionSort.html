@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>选择排序</title>
+    <script src="./CArray.js"></script>
+  </head>
+  <body>s
+     <pre>
+        将第一个元素和其他元素进行比较，检查完所有的元素后，最小的元素会被放在数组的第一个位置，
+        然后算法会从第二个位置继续，这个过程一直进行，但进行到数组的倒数第二个位置时，所有的数据便完成了排序
+     </pre>
+      <script>
+           function selectionSort() {
+              var min,temp;
+              for(var outer = 0;outer <= this.dataStore.length-2;++outer) {
+                 min = outer;
+                //  console.log(min);
+                 for(var inner = outer +1;inner<= this.dataStore.length-1;++inner){
+                    if(this.dataStore[inner]<this.dataStore[min]){
+                       min = inner;
+                      //  console.log(this.dataStore[min]);
+                    }
+                 }
+                 swap(this.dataStore,outer,min);
+                //  console.log(this.toString());
+              }
+           }
+           var numElements = 10;
+           var myNums = new CArray(numElements);
+           myNums.selectionSort = selectionSort;
+           myNums.setData();
+           console.log(myNums.toString());
+           myNums.selectionSort();
+           console.log(myNums.toString());
+      </script>
+  </body>
+</html>
