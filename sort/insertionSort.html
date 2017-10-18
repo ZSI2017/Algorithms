@@ -1,19 +1,48 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <title>插入排序</title>
+   <meta charset="utf-8">
+   <title>插入排序</title>
    <script src="./CArray.js"></script>
+   <script src="./sportUtilCopy.js"></script>
+   <style>
+   #show{
+     position:relative;
+   }
+   .boxitem{
+       background:black;
+       color:white;
+       height:30px;
+       width:40px;
+       top:0px;
+       position: absolute;
+       font-size: 24px;
+       text-align: center;
+       margin-right:30px;
+       border-radius: 5px;
+   }
+   </style>
   </head>
   <body>
-     <p>从数组的第二项开始向后循环，通过将较大的数据移动到右侧，为数组左侧腾出位置</p>
+     <p>插入排序</p>
+     <pre>从数组的第二项开始向后循环，通过将较大的数据移动到右侧，为数组左侧腾出位置</pre>
+     <div id="show">
+     </div>
       <script>
            function insertionSort(){
               var temp,inner;
+            var boxItemList = document.getElementsByClassName('boxitem');
               for(var outer = 1;outer <= this.dataStore.length-1;++outer) {
                    temp = this.dataStore[outer];
                    inner = outer;
                    while(inner>0 && (this.dataStore[inner-1]>=temp)) {
+                     (function(internalTempInner){
+                       console.log(outer);
+                       setTimeout(function(){
+                              //  move(boxItemList[internalTempInner],{top:60})
+                       },(outer-internalTempInner)*1000);
+                     })(inner)
+
                       this.dataStore[inner] = this.dataStore[inner-1];
                       --inner;
                    }
