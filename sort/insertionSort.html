@@ -30,21 +30,69 @@
      </div>
       <script>
            function insertionSort(){
-              var temp,inner;
+            var temp,inner;
+            var originDataStore = this.dataStore.slice(0);
             var boxItemList = document.getElementsByClassName('boxitem');
               for(var outer = 1;outer <= this.dataStore.length-1;++outer) {
                    temp = this.dataStore[outer];
                    inner = outer;
-                   while(inner>0 && (this.dataStore[inner-1]>=temp)) {
+                   for(var inner = outer;inner>0 && (this.dataStore[inner-1]>=temp);inner--){
+                  //  while(inner>0 && (this.dataStore[inner-1]>=temp)) {
+                    //  console.log(internalOuter);
                      (function(internalTempInner){
-                       console.log(outer);
+                       var internalOuter = outer;
+                       var tempMax = originDataStore[outer]
+                      //  console.log(internalOuter);
                        setTimeout(function(){
-                              //  move(boxItemList[internalTempInner],{top:60})
-                       },(outer-internalTempInner)*1000);
-                     })(inner)
+                             console.log(internalOuter);
+                               move(boxItemList[internalTempInner],{top:60},function(){
+                                   if(originDataStore[internalTempInner]>=tempMax){
+                                         move(boxItemList[internalTempInner],{top:0},function(){
+                                           var cloneNode= boxItemList[internalTempInner].cloneNode(true);
+                                          boxItemList[internalTempInner].parentNode.insertBefore(cloneNode,boxItemList[internalOuter+1]);
+                                           move(cloneNode,{left:(internalTempInner+1)*60},function(){
+                                            //  move(cloneNode,{top:0})
+                                            if(boxItemList.length>numElements){
+                                               boxItemList[internalTempInner+1].parentNode.removeChild(boxItemList[internalTempInner])
+                                            }
+                                             originDataStore[internalTempInner+1] =originDataStore[internalTempInner];
+                                             if(internalTempInner<=0){
+                                                 move(boxItemList[internalOuter],{left:0},function(){
+                                                      originDataStore[0] =tempMax;
+                                                     boxItemList[internalTempInner+1].parentNode.removeChild(boxItemList[internalTempInner])
+                                                 })
 
-                      this.dataStore[inner] = this.dataStore[inner-1];
-                      --inner;
+                                             }
+                                             if(originDataStore[internalTempInner-1]<tempMax){
+                                                 move(boxItemList[internalOuter],{left:internalTempInner*60},function(){
+                                                   originDataStore[internalTempInner] =tempMax;
+                                                  boxItemList[internalTempInner+1].parentNode.removeChild(boxItemList[internalTempInner])
+                                                 })
+
+                                             }
+                                           })
+                                         })
+
+
+                                   }else {
+                                     move(boxItemList[internalTempInner],{top:0})
+                                     if(internalTempInner<=0){
+                                         move(boxItemList[internalOuter],{left:0})
+                                     }
+                                     if(originDataStore[internalTempInner-1]<originDataStore[internalOuter]){
+                                         move(boxItemList[internalOuter],{left:internalTempInner*60})
+                                     }
+                                    //  move(boxItemList[internalOuter],{left:(internalTempInner-1)*60})
+                                   }
+
+
+                               })
+                       },(outer-internalTempInner)*1000+(outer*(outer-1)/2)*1000);
+                     })(inner-1)
+                     if(this.dataStore[inner-1]>=temp){
+                       this.dataStore[inner] = this.dataStore[inner-1];
+                     }
+                      // --inner;
                    }
                    this.dataStore[inner] = temp;
               }
