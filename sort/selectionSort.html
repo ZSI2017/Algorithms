@@ -4,26 +4,82 @@
     <meta charset="utf-8">
     <title>选择排序</title>
     <script src="./CArray.js"></script>
+    <script src="./sportUtilCopy.js"></script>
+    <style>
+    #show{
+      position:relative;
+    }
+    .boxitem{
+        background:black;
+        color:white;
+        height:30px;
+        width:40px;
+        top:0px;
+        position: absolute;
+        font-size: 24px;
+        text-align: center;
+        margin-right:30px;
+        border-radius: 5px;
+    }
+    </style>
   </head>
-  <body>s
+  <body>
+      <p>选择排序</p>
      <pre>
         将第一个元素和其他元素进行比较，检查完所有的元素后，最小的元素会被放在数组的第一个位置，
         然后算法会从第二个位置继续，这个过程一直进行，但进行到数组的倒数第二个位置时，所有的数据便完成了排序
      </pre>
+     <div id="show">
+     </div>
+
       <script>
            function selectionSort() {
               var min,temp;
+              var _self = this;
+              var originDataStore = this.dataStore.slice(0);
+              var boxItemList = document.getElementsByClassName('boxitem');
               for(var outer = 0;outer <= this.dataStore.length-2;++outer) {
-                 min = outer;
-                //  console.log(min);
-                 for(var inner = outer +1;inner<= this.dataStore.length-1;++inner){
-                    if(this.dataStore[inner]<this.dataStore[min]){
-                       min = inner;
-                      //  console.log(this.dataStore[min]);
-                    }
-                 }
+                // internalTime == numElements?0:(internalTime+numElements-1)*internalTime/2*2000
+                    min = outer;
+                  var tempMin = outer
+                  for(var tempinner = outer +1;tempinner<= this.dataStore.length-1;++tempinner){
+                    (function(internalTempInner){
+                        var tempMin = outer;
+
+                        // console.log(tempMin);
+                        //
+                         setTimeout(function(){
+                            // console.log(tempMin);
+                            boxItemList[tempMin].style.background = '#20A0FF'
+                              move(boxItemList[internalTempInner],{top:60},function(){
+
+                                   console.log(tempMin);
+                                   if(originDataStore[internalTempInner]<originDataStore[tempMin]){
+                                     move(boxItemList[internalTempInner],{left:tempMin*60},function(){
+                                        move(boxItemList[internalTempInner],{top:0})
+                                        move(boxItemList[tempMin],{left:internalTempInner*60})
+                                        swap(originDataStore,internalTempInner,tempMin);
+                                        boxItemList[internalTempInner].parentNode.insertBefore(boxItemList[tempMin],boxItemList[internalTempInner]);
+                                        boxItemList[internalTempInner].parentNode.insertBefore(boxItemList[internalTempInner],boxItemList[tempMin]);
+                                          boxItemList[tempMin].style.background = '#20A0FF'
+                                            boxItemList[internalTempInner].style.background = 'black'
+
+                                     })
+                                        // boxItemList[tempMin].style.background = 'black';
+                                        // tempMin = internalTempInner;
+                                        // boxItemList[tempMin].style.background = '#20A0FF'
+                                      //  console.log(tempMin);
+                                   }else {
+                                         move(boxItemList[internalTempInner],{top:0})
+                                   }
+                              })
+                         },(internalTempInner-1)*1000+(numElements-outer+numElements-1)*outer/2*1000)
+                    })(tempinner)
+                   if(this.dataStore[tempinner]<this.dataStore[min]){
+                      min = tempinner;
+                   }
+                }
                  swap(this.dataStore,outer,min);
-                //  console.log(this.toString());
               }
            }
            var numElements = 10;
