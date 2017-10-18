@@ -46,13 +46,20 @@
         console.log("希尔排序前： ");
         console.log(nums.toString());
         console.log("希尔排序中");
+
         // nums.shelglsort();
-        nums.shelllsort1();
+        nums.shellsort();
         console.log("希尔排序后");
         console.log(nums.toString());
 
-
-
+        nums.clear();    // 清除数据
+        nums.setData();
+        console.log("希尔排序前：");
+        console.log(nums.toString());
+        console.log("希尔排序后：");
+        nums.shelllsort1();
+        console.log(nums.toString());
+        nums.clear();
     </script>
 
   </body>
