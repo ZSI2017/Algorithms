@@ -26,6 +26,16 @@ function setData(){
    for(var i =0;i<this.numElements;++i) {
       this.dataStore[i] = Math.floor(Math.random()*(this.numElements +1))
    }
+   var oFragment = document.createDocumentFragment();
+   var box = document.getElementById('show');
+   this.dataStore.forEach(function(item,index) {
+       var tempDiv = document.createElement('div');
+       tempDiv.className='boxitem';
+       tempDiv.style.left = index *60 +'px'
+       tempDiv.innerHTML = item;
+       oFragment.appendChild(tempDiv);
+   })
+   box.appendChild(oFragment)
 }
 
 function clear() {
