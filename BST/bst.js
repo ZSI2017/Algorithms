@@ -6,6 +6,8 @@ function Node(data,left,right) {
    this.count = 1;
 }
 
+
+
 function show() {
     return this.data;
 }
@@ -17,7 +19,7 @@ function BST() {
     this.getMin = getMin;
     this.getMax = getMax;
     this.find = find;
-    this.update = update
+    this.update = update;
 
     // 记录 BST 中 所有节点的个数
     this.count = 1;

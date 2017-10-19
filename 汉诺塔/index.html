@@ -20,9 +20,9 @@
             top: 200px;
             width: 30px;
             height: 300px;
-            border-radius: 10px;
-            background: black;
-            border: 1px solid rebeccapurple;
+            border-radius: 5px;
+            background: #20A0FF;
+            /*border: 1px solid rebeccapurple;*/
         }
 
         #hor li {
@@ -30,14 +30,15 @@
             top: 500px;
             width: 250px;
             height: 30px;
-            background: blanchedalmond;
-            border: 1px solid black;
+            border-radius: 5px;
+            background: #20A0FF;
+            /*border: 1px solid black;*/
         }
 
     </style>
 </head>
 <body>
-<input type="text" value="环的个数" id="txt">
+<input type="text" placeholder="环的个数" id="txt">
 <input type="button" value="开始运动" id="btn">
 <ul id="vertical">
     <li></li>
@@ -123,7 +124,7 @@
         count = parseInt(t.value);
         for (var i = 0; i < count; i++) {
             var temp = document.createElement("div");
-            temp.style.background = "grey";
+            temp.style.background = "#1F2D3D";
             temp.style.height = "25px";
             temp.style.width = (250 - 20 * (i + 1)) + "px";
             temp.style.position = "absolute";
