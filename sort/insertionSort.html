@@ -49,27 +49,40 @@
                                    if(originDataStore[internalTempInner]>=tempMax){
                                          move(boxItemList[internalTempInner],{top:0},function(){
                                            var cloneNode= boxItemList[internalTempInner].cloneNode(true);
-                                          boxItemList[internalTempInner].parentNode.insertBefore(cloneNode,boxItemList[internalOuter+1]);
+                                           boxItemList[internalTempInner].parentNode.insertBefore(cloneNode,boxItemList[internalTempInner]);
                                            move(cloneNode,{left:(internalTempInner+1)*60},function(){
                                             //  move(cloneNode,{top:0})
-                                            if(boxItemList.length>numElements){
-                                               boxItemList[internalTempInner+1].parentNode.removeChild(boxItemList[internalTempInner])
-                                            }
-                                             originDataStore[internalTempInner+1] =originDataStore[internalTempInner];
+
+                                            originDataStore[internalTempInner+1] =originDataStore[internalTempInner];
+                                            boxItemList[internalTempInner+1].parentNode.removeChild(boxItemList[internalTempInner+2])
+                                            boxItemList[internalTempInner].parentNode.insertBefore(boxItemList[internalTempInner+1],cloneNode);
                                              if(internalTempInner<=0){
-                                                 move(boxItemList[internalOuter],{left:0},function(){
-                                                      originDataStore[0] =tempMax;
-                                                     boxItemList[internalTempInner+1].parentNode.removeChild(boxItemList[internalTempInner])
+                                                var cloneNodeMax= cloneNode.cloneNode(true);
+                                                    cloneNodeMax.innerHTML= tempMax;
+                                                    cloneNodeMax.style.background = "#20A0FF"
+                                                    cloneNode.parentNode.insertBefore(cloneNodeMax,boxItemList[internalTempInner]);
+                                                move(cloneNodeMax,{left:0},function(){
+                                                     originDataStore[0] =tempMax;
+                                                     boxItemList[internalTempInner+1].parentNode.removeChild(boxItemList[internalTempInner+1])
+                                                     cloneNodeMax.style.background = "black"
+                                                    //  boxItemList[internalTempInner].parentNode.insertBefore(boxItemList[internalTempInner],boxItemList[internalOuter]);
+                                                    //  boxItemList[internalTempInner].parentNode.insertBefore(boxItemList[internalOuter],boxItemList[internalTempInner]);
                                                  })
 
                                              }
                                              if(originDataStore[internalTempInner-1]<tempMax){
-                                                 move(boxItemList[internalOuter],{left:internalTempInner*60},function(){
-                                                   originDataStore[internalTempInner] =tempMax;
-                                                  boxItemList[internalTempInner+1].parentNode.removeChild(boxItemList[internalTempInner])
-                                                 })
+                                               var cloneNodeMax= cloneNode.cloneNode(true);
+                                                   cloneNodeMax.innerHTML= tempMax;
+                                                   cloneNode.parentNode.insertBefore(cloneNodeMax,boxItemList[internalTempInner]);
 
+                                                 move(cloneNodeMax,{left:internalTempInner*60},function(){
+                                                   originDataStore[internalTempInner] =tempMax;
+                                                  boxItemList[internalTempInner+1].parentNode.removeChild(boxItemList[internalTempInner+1])
+                                                 })
                                              }
+                                            //  if(boxItemList.length>numElements&&internalTempInner>0&&originDataStore[internalTempInner-1]>=tempMax){
+                                            //      boxItemList[internalTempInner+1].parentNode.removeChild(boxItemList[internalTempInner])
+                                            //   }
                                            })
                                          })
 
@@ -84,8 +97,6 @@
                                      }
                                     //  move(boxItemList[internalOuter],{left:(internalTempInner-1)*60})
                                    }
-
-
                                })
                        },(outer-internalTempInner)*1000+(outer*(outer-1)/2)*1000);
                      })(inner-1)
