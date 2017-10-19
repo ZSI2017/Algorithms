@@ -147,9 +147,6 @@ function putLinear(data,key) {
   }else {
       pos = this.betterHash(data);
   }
-  // console.log(pos);
-  //  console.log(this.table[pos]);
-  //  console.log(data)
   if(this.table[pos] == undefined) {
        this.table[pos] = data;
        this.values[pos] = data;
