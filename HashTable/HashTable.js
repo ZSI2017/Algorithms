@@ -37,7 +37,7 @@ function simpleHash(data){
     return total%this.table.length;
 }
 
-// 使用霍纳算法 求和的时候每次都乘以2一个质数，这样就可以避免发生碰撞
+// 使用霍纳算法 求和的时候每次都乘以一个质数，这样就可以避免发生碰撞
 function betterHash(string,arr) {
    const H = 37;
    var total = 0;
