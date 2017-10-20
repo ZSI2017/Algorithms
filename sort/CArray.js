@@ -26,6 +26,7 @@ function setData(){
    for(var i =0;i<this.numElements;++i) {
       this.dataStore[i] = Math.floor(Math.random()*(this.numElements +1));
    }
+   console.log("初始数据：%o",this.dataStore);
   // for(var i =0;i<this.numElements;++i) {
   //    this.dataStore[i] = 10-i;
   // }
@@ -38,7 +39,9 @@ function setData(){
        tempDiv.innerHTML = item;
        oFragment.appendChild(tempDiv);
    });
-   box.appendChild(oFragment);
+   if(box) {
+     box.appendChild(oFragment);
+   }
 }
 
 function clear() {
