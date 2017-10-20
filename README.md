@@ -15,6 +15,6 @@
         本书适合初学JavaScript，打牢基础，入门数据结构和算法，
         毕竟书中算法的讲解是站在JavaScript的角度，也没有像专业算法数据那样使用伪代码来进行描述
 
- 目录结构
-
-      [例 7-1 Dictionary](./Dictionary/Dictionary.js)
+ 目录结构  
+        [例 7-1 Dictionary](./Dictionary/Dictionary.js)  
+        [ 练习7.4 ](./Dictionary/Dictionary.js)  
