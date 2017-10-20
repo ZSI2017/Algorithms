@@ -17,7 +17,7 @@
    -  书中第七章开始到后面章节的书中示例代码(已在浏览器中测试运行，修改部分bug)
    - [第十二章排序算法动画实现](./sort)
    - [汉诺塔动画](./汉诺塔/index.html)
-
+   - 后续更新
 
  ### 目录结构  
  - ##### [第七章 字典](./Dictionary)
@@ -42,9 +42,7 @@
   - ###### 11.5 查找最短路径
     - [例 11-4 查找一个顶点的最短路径(利用bfs)](./Graph/shortestPath.html)
   - [11.6 拓扑排序][1]
-[1]: ./Graph/BFS(BreadthFirstSearch).html
-[2]: ./Graph/DFS(Depth-First-Search).html
-[3]:./Graph/TopologicalSorting(拓扑排序).html
+
 - ##### [第十二章 排序算法](./sort)
    - [12.1 数组测试平台](./sort/CArray.js)
    - ###### 12.2 基本排序算法
@@ -60,4 +58,9 @@
 - ##### [第十四章 高级算法](./senior)
      - [14.1 动态规划][4]
       - [14.1.4 背包问题：动态规划方案](./senior/backpack.html)
+
+
+[1]: ./Graph/BFS(BreadthFirstSearch).html
+[2]: ./Graph/DFS(Depth-First-Search).html
+[3]:./Graph/TopologicalSorting(拓扑排序).html
 [4]: ./senior/DP(dynamicProgramming).html
