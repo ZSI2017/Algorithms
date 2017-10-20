@@ -17,4 +17,8 @@
 
  目录结构  
         [例 7-1 Dictionary](./Dictionary/Dictionary.js)  
-        [ 练习7.4 ](./Dictionary/Dictionary.js)  
+        [ 练习7.4 ](./Dictionary/title1.html)  
+        [ 散列主页](./HashTable)  
+        [ 散列 HashTable.js类](./HashTable/HashTable.js)  
+        [ 散列- 碰撞解决- 线性探测法实例](./HashTable/linearProbing.html)
+        [ 散列-碰撞解决-开链法- 实例](./HashTable/openLink.html)
