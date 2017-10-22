@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>贪心算法</title>
+  </head>
+  <body>
+     <pre>
+         一种比较简单的算法，总是会选择当下的最优解，而不去考虑这一次的选择会不会对未来的选择造成影响
+
+         这一系列的局部‘最优选择’能够带来最终的整体‘最优’选择。如果是这样的话，该算法将会产生一个最优解，
+         否则，则会产生一个次尤解
+           店员找零： 两个25美分，一个10美分， 三个1美分
+
+     </pre>
+     <script>
+         function makeChange(origAmt,coins) {
+            var remainAmt = 0;
+            if(origAmt % 25 <origAmt) {
+               coins[3] = parseInt(origAmt/25);
+               remainAmt = origAmt % 25;
+               origAmt = remainAmt;
+               console.log(origAmt);
+
+            }
+            if(origAmt % 10 < origAmt) {
+               coins[2] = parseInt(origAmt/10);
+              //  console.log(origAmt % 10);
+               remainAmt = origAmt %10;
+               origAmt = remainAmt;
+            }
+            if(origAmt % 5 <origAmt) {
+              coins[1] = parseInt(origAmt/5);
+              remainAmt = origAmt % 5;
+              origAmt = remainAmt;
+            }
+            coins[0] = parseInt(origAmt/1);
+         }
+         function showChange(coins) {
+           console.log(coins);
+             if(coins[3] > 0 ) {
+                 console.log("25美分"+coins[3]);
+             }
+             if(coins[2] > 0) {
+                console.log("10美分"+coins[2]);
+             }
+             if(coins[1] > 0 ) {
+                 console.log("5美分"+coins[1]);
+             }
+             if(coins[0] > 0) {
+                console.log("1美分"+coins[0]);
+             }
+         }
+
+         var  origAmt = 63;
+         var  coins = [];
+         makeChange(origAmt,coins);
+         showChange(coins);
+     </script>
+
+  </body>
+</html>
