@@ -27,7 +27,7 @@ function put(data) {
 
 function get(key) {
   //  console.log(this.betterHash(key));
-    return this.table[this.betterHash(key)]
+    return this.table[this.betterHash(key)];
 }
 function simpleHash(data){
     var total = 0;
@@ -81,17 +81,18 @@ function genStuData(arr) {
 // 开链法定义
 function buildChains() {
     for(var i =0;i<this.table.length;++i) {
-        this.table[i] = new Array();
+        this.table[i] = [];
     }
 }
 
 function showDistroOpenLink(){
-     var n =0;
+    //  var n =0;
+    console.log();
      for(var i =0;i<this.table.length;++i) {
         //  console.log(this.table[i][0])
         //  console.log("------------------------");
         if(this.table[i][0] != undefined) {
-          console.log(i +":"+this.table[i]);
+           console.log(i +":"+this.table[i]);
         }
      }
 }
@@ -114,8 +115,8 @@ function putOpenLink(data) {
 
 function getOpenLink(key) {
      var index =0;
-     var hash = this.betterHash(key);
-     if(this.table[pos][index] = key){
+     var pos = this.betterHash(key);
+     if(this.table[pos][index] == key){
          return this.table[pos][index+1];
      }else {
          index +=2;
@@ -129,7 +130,7 @@ function getOpenLink(key) {
 
 function buildChains() {
    for(var i =0;i<this.table.length;++i){
-       this.table[i] = new Array()
+       this.table[i] = [];
    }
 }
 
@@ -163,7 +164,7 @@ function getLinear(key) {
     var hash = -1;
     hash = this.betterHash(key);
     if(hash >-1){
-       for(var i = hash;this.table[i] != undefined;i++) {
+       for(var i = hash;this.table[i] != undefined;i++){
           // console.log(this.table[i]);
           // if(this.table[hash] == key) {
             //  return this.value[hash];

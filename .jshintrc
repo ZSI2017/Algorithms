@@ -1,0 +1,23 @@
+{
+  "esversion": 6,
+  "notypeof": true,
+  "unused": true,
+  "bitwise": false,
+  "curly": true,
+  "eqeqeq": false,
+  "forin": true,
+  "immed": true,
+  "latedef": false,
+  "newcap": true,
+  "noempty": true,
+  "undef": false,
+  "freeze": false,
+  "asi": false,
+  "boss": false,
+  "eqnull": true,
+  "evil": true,
+  "shadow": true,
+  "sub": true,
+  "supernew": true,
+  "validthis": true
+}
