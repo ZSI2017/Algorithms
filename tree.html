@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>文件数</title>
+</head>
+
+<body>
+
+  <script>
+    var filelist = [{
+        name: 'a.html',
+        path: 'src/app'
+      },
+      {
+        name: 'b.html',
+        path: 'src/app'
+      },
+      {
+        name: 'c.html',
+        path: 'src/app/com'
+      },
+      {
+        name: 'd.html',
+        path: 'src/acc'
+      },
+      {
+        name: 'e.html',
+        path: 'src/acc'
+      }
+    ]
+
+    function structuring(arr) {
+      var rtn = []
+      arr.forEach((el, i) => {
+        var keys = el.path.split('/')
+        keys.push(el.name)
+        var tmp = rtn;
+        keys.forEach((key, i) => {
+          if (!findTitle(tmp, key).length) {
+            if (key.indexOf('.html') > -1) {
+              tmp.push({
+                title: key
+              })
+            } else {
+              tmp.push({
+                title: key,
+                children: []
+              })
+              tmp = findTitle(tmp, key)[0].children
+            }
+          } else {
+            tmp = findTitle(tmp, key)[0].children
+          }
+        });
+      })
+      return rtn
+    }
+
+    function findTitle(arr, title) {
+      var tmp = arr.filter((v, i) => {
+        return v.title === title
+      })
+      return tmp
+    }
+
+    console.log(structuring(filelist))
+  </script>
+</body>
+
+</html>
