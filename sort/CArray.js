@@ -23,13 +23,13 @@ function setGaps(arr) {
 }
 
 function setData(){
-   for(var i =0;i<this.numElements;++i) {
-      this.dataStore[i] = Math.floor(Math.random()*(this.numElements +1));
-   }
+  //  for(var i =0;i<this.numElements;++i) {
+  //     this.dataStore[i] = Math.floor(Math.random()*(this.numElements +1));
+  //  }
    console.log("初始数据：%o",this.dataStore);
-  // for(var i =0;i<this.numElements;++i) {
-  //    this.dataStore[i] = 10-i;
-  // }
+  for(var i =0;i<this.numElements;++i) {
+     this.dataStore[i] = 10-i;
+  }
    var oFragment = document.createDocumentFragment();
    var box = document.getElementById('show');
    this.dataStore.forEach(function(item,index) {
