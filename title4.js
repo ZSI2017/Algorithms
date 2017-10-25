@@ -32,7 +32,7 @@ function insert(filList) {
                   if(!this.findOne(item)){
                      var tempNode = new Node()
                   }
-               }
+               } 
           })
      })
 }

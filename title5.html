@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>js 指点删除数组（树结构数据）</title>
+</head>
+
+<body>
+  <pre>
+      查找相同ID删除对象,ID相同则删除该对象
+      var data =[{id:1,name:'一级', children:[{id:2,name:'二级', children:[{id:3,name:'一级', children:[{id:31,name:'二级'},{id:32,name:'二级'},{id:33,name:'二级'}],company_id:7}],company_id:8}], company_id:9}]
+      比如ID==31，得到以下数组
+      [{id:1,name:'一级', children:[{id:2,name:'二级', children:[{id:3,name:'一级', children:[{id:32,name:'二级'},{id:33,name:'二级'}],company_id:7}],company_id:8}], company_id:9}]
+    </pre>
+  <script>
+    var data = [{
+      id: 1,
+      name: '一级',
+      children: [{
+        id: 2,
+        name: '二级',
+        children: [{
+          id: 3,
+          name: '一级',
+          children: [{
+            id: 31,
+            name: '二级'
+          }, {
+            id: 32,
+            name: '二级'
+          }, {
+            id: 33,
+            name: '二级'
+          }],
+          company_id: 7
+        }],
+        company_id: 8
+      }],
+      company_id: 9
+    }]
+
+    // ID == 31 删除该对象
+    [{
+      id: 1,
+      name: '一级',
+      children: [{
+        id: 2,
+        name: '二级',
+        children: [{
+          id: 3,
+          name: '一级',
+          children: [{
+            id: 32,
+            name: '二级'
+          }, {
+            id: 33,
+            name: '二级'
+          }],
+          company_id: 7
+        }],
+        company_id: 8
+      }],
+      company_id: 9
+    }]
+  </script>
+
+</body>
+
+</html>

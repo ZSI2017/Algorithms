@@ -1,7 +1,7 @@
 {
   "esversion": 6,
   "notypeof": true,
-  "unused": true,
+  "unused": false,
   "bitwise": false,
   "curly": true,
   "eqeqeq": false,
