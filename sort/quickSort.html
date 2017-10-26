@@ -67,7 +67,7 @@ T[n] = T[n-1] + T[1] + O(n),
               var pivot = list[0];
               for(var i =1;i<list.length;i++) {
                 console.log("基准值： "+pivot+"当前元素："+list[i]);
-                  if(list[i] < pivot) {
+                  if(list[i] < pivot) {-++
                        console.log("移动 "+list[i]+" 到左边 ");
                        lesser.push(list[i]);
                   }else {

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title> 归并排序 </title>
+  </head>
+  <body>
+     <pre>
+         归并排序的命名来自它的实现原理: 把一系列的排好序的子序列合并成一个大的完整有序序列
+         两个排好序的子数组，然后通过比较数据大小，先从最小的数据开始插入，最后合并得到第三个数组。
+
+          1.自顶向下的归并排序， 通常来讲，归并排序会使用递归的算法来实现，
+          public class MergeSort {
+                  /**
+                   * 归并排序
+                   * 简介:将两个（或两个以上）有序表合并成一个新的有序表 即把待排序序列分为若干个子序列，每个子序列是有序的。然后再把有序子序列合并为整体有序序列
+                   * 时间复杂度为O(nlogn)
+                   * 稳定排序方式
+                   * @param nums 待排序数组
+                   * @return 输出有序数组
+                   */
+                  public static int[] sort(int[] nums, int low, int high) {
+                      int mid = (low + high) / 2;
+                      if (low < high) {
+                          // 左边
+                          sort(nums, low, mid);
+                          // 右边
+                          sort(nums, mid + 1, high);
+                          // 左右归并
+                          merge(nums, low, mid, high);
+                      }
+                      return nums;
+                  }
+
+                  public static void merge(int[] nums, int low, int mid, int high) {
+                      int[] temp = new int[high - low + 1];
+                      int i = low;// 左指针
+                      int j = mid + 1;// 右指针
+                      int k = 0;
+                      // 把较小的数先移到新数组中
+                      while (i <= mid && j <= high) {
+                          if (nums[i] < nums[j]) {
+                              temp[k++] = nums[i++];
+                          } else {
+                              temp[k++] = nums[j++];
+                          }
+                      }
+                      // 把左边剩余的数移入数组
+                      while (i <= mid) {
+                          temp[k++] = nums[i++];
+                      }
+                      // 把右边边剩余的数移入数组
+                      while (j <= high) {
+                          temp[k++] = nums[j++];
+                      }
+
+                      // 把新数组中的数覆盖nums数组
+                      for (int k2 = 0; k2 < temp.length; k2++) {
+                          nums[k2 + low] = temp[k2];
+                      }
+                  }
+
+                  // 归并排序的实现
+                  public static void main(String[] args) {
+                      int[] nums = { 2, 7, 8, 3, 1, 6, 9, 0, 5, 4 };
+                      MergeSort.sort(nums, 0, nums.length-1);
+                      System.out.println(Arrays.toString(nums));
+                  }
+              }
+              算法的递归深度太深，使用一种非递归的方式来实现这种算法，自底向上的归并排序算法
+
+     </pre>
+     <script>
+        function mergeSort(arr) {
+            if(arr.length < 2) {
+                return ;
+            }
+            var step = 1;
+            var left,right;
+            while(step < arr.length) {
+                left = 0 ;
+                right = step;
+                while(right + step <= arr.length) {
+                  mergeArrays(arr,left,left+step,right,right+step);
+                  left = right +step;
+                  right = left + step;
+               }
+               if(right < arr.length) {
+                   mergeArrays(arr,left,left+step,right,arr.length);
+               }
+               step *=2;
+            }
+        }
+        function mergeArrays(arr,startLeft,stopLeft,startRight,stopRight) {
+            var rightArr = new Array(stopRight - startRight +1);
+            var leftArr  = new Array(stopLeft - startLeft +1);
+            k = startRight;
+            for(var i = 0;i<(rightArr.length-1);++i) {
+                rightArr[i] = arr[k];
+                   ++k;
+            }
+            k = startLeft;
+            for(var i =0 ;i<(leftArr.length-1);++i) {
+                leftArr[i] = arr[k];
+                ++k;
+            }
+            rightArr[rightArr.length -1] = Infinity    // 哨兵值4
+            leftArr[leftArr.length -1]　= Infinity    // 哨兵值
+            var m = 0;
+            var n =0 ;
+            for(var k = startLeft;k<stopRight;++k) {
+                if(leftArr[m] <= rightArr[n]) {
+                    arr[k] = leftArr[m];
+                    m++;
+                }
+                else {
+                    arr[k] = rightArr[n];
+                    n++;
+                }
+            }
+            console.log("left array - "+leftArr);
+            console.log("right array - "+ rightArr);
+            console.log(arr);
+        }
+        var nums = [6,10,1,9,4,8,2,7,3,5];
+        console.log(nums);
+        mergeSort(nums);
+       console.log(nums);
+     </script>
+  </body>
+</html>
