@@ -586,7 +586,13 @@
   							$(".single_btn").removeClass("loading");
   							$(".single_btn").html("立即下单");
   						}
-  						$.axs(xhrurl, info, function (data) {
+  						new Promise(function (resolve, reject) {
+  							$.axs(xhrurl, info, function (data) {
+  								resolve(data)
+  							}, function (data) {
+  								reject(data)
+  							});
+  						}).then(function (data) { // jshint ignore:line
   							$(".single_btn").removeClass("loading");
   							$(".single_btn").html("立即下单");
   							if (data.meta.code == "0000") {
@@ -652,7 +658,7 @@
   									type: 'exception'
   								});
   							}
-  						});
+  						})
   					}
   				},
   				// 头部两行的地址信息初始化
@@ -919,92 +925,7 @@
   								this.style.color = '#ccc';
   							}
   						});
-  						//期望上门时间 spm
-  						$(".alertInfo").on("click", "#selectTime", function () {
-  							BizLog.call('info', {
-  								spmId: "a106.b2109.c4629.d7164",
-  								actionId: 'clicked',
-  								params: {
-  									CompName: infoPersonCompany.epCompanyName
-  								}
-  							});
-  						});
-  						//物品类型 spm
-  						$(".alertInfo").on("click", ".wpType", function () {
-  							BizLog.call('info', {
-  								spmId: "a106.b2109.c4629.d7165",
-  								actionId: 'clicked',
-  								params: {
-  									CompName: infoPersonCompany.epCompanyName
-  								}
-  							});
-  						});
-  						//服务类型 spm
-  						$(".alertInfo").on("click", ".fwType", function () {
-  							BizLog.call('info', {
-  								spmId: "a106.b2109.c4629.d7331",
-  								actionId: 'clicked',
-  								params: {
-  									CompName: infoPersonCompany.epCompanyName
-  								}
-  							});
-  						});
-  						//物品重量 spm
-  						$(".alertInfo").on("click", ".wpWeight", function () {
-  							BizLog.call('info', {
-  								spmId: "a106.b2109.c4629.d7166",
-  								actionId: 'clicked',
-  								params: {
-  									CompName: infoPersonCompany.epCompanyName
-  								}
-  							});
-  						});
-  						//如何计算 spm
-  						$(".price_rule").on("click", function () {
-  							BizLog.call('info', {
-  								spmId: "a106.b2109.c4629.d7169",
-  								actionId: 'clicked',
-  								params: {
-  									CompName: infoPersonCompany.epCompanyName
-  								}
-  							});
-  							$("#text-content").blur();
-  							setTimeout(function () {
-  								ant.pushWindow({
-  									url: "price-rule.html"
-  								});
-  							}, 300);
-  						});
-  						// 绑定“同意协议” 复选框的事件 spm
-  						$("#defaultCheckBox").click(function () {
-  							BizLog.call('info', {
-  								spmId: "a106.b2109.c4630.d7170",
-  								actionId: 'clicked',
-  								params: {
-  									CompName: infoPersonCompany.epCompanyName
-  								}
-  							});
-  						});
-  						// 点击服务协议 spm
-  						$(".service_agreement").on("click", function () {
-  							BizLog.call('info', {
-  								spmId: "a106.b2109.c4630.d7171",
-  								actionId: 'clicked',
-  								params: {
-  									CompName: infoPersonCompany.
-  								}
-  							});
-  						});
-  						// 绑定"立即下单"按钮的点击事件 spm
-  						$(".single_btn").click(function () {
-  							BizLog.call('info', {
-  								spmId: "a106.b2109.c4630.d7172",
-  								actionId: 'clicked',
-  								params: {
-  									CompName: epCompanyName
-  								}
-  							});
-  						});
+
   					});
   				}
   			}
@@ -1184,6 +1105,92 @@
   			}
   		},
   		setSPM: function () {
+  			//期望上门时间 spm
+  			$(".alertInfo").on("click", "#selectTime", function () {
+  				BizLog.call('info', {
+  					spmId: "a106.b2109.c4629.d7164",
+  					actionId: 'clicked',
+  					params: {
+  						CompName: infoPersonCompany.epCompanyName
+  					}
+  				});
+  			});
+  			//物品类型 spm
+  			$(".alertInfo").on("click", ".wpType", function () {
+  				BizLog.call('info', {
+  					spmId: "a106.b2109.c4629.d7165",
+  					actionId: 'clicked',
+  					params: {
+  						CompName: infoPersonCompany.epCompanyName
+  					}
+  				});
+  			});
+  			//服务类型 spm
+  			$(".alertInfo").on("click", ".fwType", function () {
+  				BizLog.call('info', {
+  					spmId: "a106.b2109.c4629.d7331",
+  					actionId: 'clicked',
+  					params: {
+  						CompName: infoPersonCompany.epCompanyName
+  					}
+  				});
+  			});
+  			//物品重量 spm
+  			$(".alertInfo").on("click", ".wpWeight", function () {
+  				BizLog.call('info', {
+  					spmId: "a106.b2109.c4629.d7166",
+  					actionId: 'clicked',
+  					params: {
+  						CompName: infoPersonCompany.epCompanyName
+  					}
+  				});
+  			});
+  			//如何计算 spm
+  			$(".price_rule").on("click", function () {
+  				BizLog.call('info', {
+  					spmId: "a106.b2109.c4629.d7169",
+  					actionId: 'clicked',
+  					params: {
+  						CompName: infoPersonCompany.epCompanyName
+  					}
+  				});
+  				$("#text-content").blur();
+  				setTimeout(function () {
+  					ant.pushWindow({
+  						url: "price-rule.html"
+  					});
+  				}, 300);
+  			});
+  			// 绑定“同意协议” 复选框的事件 spm
+  			$("#defaultCheckBox").click(function () {
+  				BizLog.call('info', {
+  					spmId: "a106.b2109.c4630.d7170",
+  					actionId: 'clicked',
+  					params: {
+  						CompName: infoPersonCompany.epCompanyName
+  					}
+  				});
+  			});
+  			// 点击服务协议 spm
+  			$(".service_agreement").on("click", function () {
+  				BizLog.call('info', {
+  					spmId: "a106.b2109.c4630.d7171",
+  					actionId: 'clicked',
+  					params: {
+  						CompName: infoPersonCompany.
+  					}
+  				});
+  			});
+  			// 绑定"立即下单"按钮的点击事件 spm
+  			$(".single_btn").click(function () {
+  				BizLog.call('info', {
+  					spmId: "a106.b2109.c4630.d7172",
+  					actionId: 'clicked',
+  					params: {
+  						CompName: epCompanyName
+  					}
+  				});
+  			});
 
   		},
   		startPromise: function () {}
