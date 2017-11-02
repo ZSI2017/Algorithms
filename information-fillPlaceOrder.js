@@ -997,6 +997,7 @@ Zepto(($) => { // jshint ignore:line
         $('.once_order').show();
       });
 
+<<<<<<< HEAD
       $('#defaultCheckBox').find('span').css({
         'background-image': 'url(https://expressprod.oss-cn-hangzhou.aliyuncs.com/mobile/img/default-select.png)',
       });
@@ -1185,3 +1186,9 @@ Zepto(($) => { // jshint ignore:line
     startPromise() {},
   };
 });
+=======
+  		},
+  		startPromise: function () {}
+  	}
+  });
+>>>>>>> 07394a4782fd28fb5133d8d2af31600bf0c737cb
