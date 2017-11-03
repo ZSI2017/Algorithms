@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>冒泡排序解析</title>
+  <script src="./CArray.js"></script>
+  <script src="./sportUtilCopy.js"></script>
+  <!-- <link rel="stylesheet"
+ href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"> -->
+  <style>
+    #show {
+      position: relative;
+    }
+
+    .boxitem {
+      background: black;
+      color: white;
+      height: 30px;
+      width: 40px;
+      top: 0px;
+      position: absolute;
+      font-size: 24px;
+      text-align: center;
+      margin-right: 30px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <p> 冒泡排序 </p>
+  <div id="show"></div>
+  <script>
+    function bubbleSort() {
+      var numElements = this.dataStore.length;
+      var boxItemList = document.getElementsByClassName('boxitem');
+      console.log(boxItemList);
+      var temp;
+      var originDataStore = this.dataStore.slice(0);
+      for (var outer = numElements; outer >= 2; --outer) {
+        for (var inner = 0; inner < outer - 1; ++inner) {
+          (function(internalTime) {
+            setTimeout(function() {
+              move(boxItemList[internalTime], {
+                top: 60
+              }, function() {
+                console.log(originDataStore[internalTime]);
+                if (originDataStore[internalTime] > originDataStore[internalTime + 1]) {
+                  move(boxItemList[internalTime], {
+                    left: (internalTime + 1) * 60
+                  }, function() {
+                    move(boxItemList[internalTime], {
+                      top: 0
+                    })
+                  })
+                } else {
+                  move(boxItemList[internalTime], {
+                    top: 0
+                  })
+                }
+              })
+              move(boxItemList[internalTime + 1], {
+                top: 60
+              }, function() {
+                if (originDataStore[internalTime] > originDataStore[internalTime + 1]) {
+                  boxItemList[internalTime].style.background = "#20A0FF"
+                  move(boxItemList[internalTime + 1], {
+                    left: (internalTime) * 60
+                  }, function() {
+                    move(boxItemList[internalTime + 1], {
+                      top: 0
+                    });
+                    swap(originDataStore, internalTime, internalTime + 1);
+                    boxItemList[internalTime + 1].parentNode.insertBefore(boxItemList[internalTime + 1], boxItemList[internalTime]);
+                  })
+                } else {
+                  boxItemList[internalTime + 1].style.background = "#20A0FF"
+                  boxItemList[internalTime].style.background = "black"
+                  move(boxItemList[internalTime + 1], {
+                    top: 0
+                  })
+                }
+              })
+            }, internalTime * 1000 + (outer == numElements ? 0 : ((outer + numElements - 1) * Math.abs(numElements - outer)) / 2) * 1000)
+          })(inner)
+          if (this.dataStore[inner] > this.dataStore[inner + 1]) {
+            swap(this.dataStore, inner, inner + 1);
+          }
+        }
+        console.log(this.toString());
+      }
+    }
+    var numElements = 10;
+    var myNums = new CArray(numElements);
+    myNums.bubbleSort = bubbleSort;
+    myNums.setData();
+    console.log(myNums.toString());
+    myNums.bubbleSort();
+    console.log(myNums.toString());
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>12.3.3 快速排序</title>
+    <script src="./sportUtilCopy.js"></script>
+  </head>
+  <body>
+     <pre>
+          快速排序是处理大数据集合最快的排序算法之一；
+          分而治之，
+          通过递归的方式，将数据依次分解为包含较小元素 和 较大元素的不同子序列，
+     </pre>
+
+    <pre>
+         利用主定理分析时间复杂度
+   请先看下面的主定理：
+
+主定理: T [n] = aT[n/b] + f (n)
+其中 a >= 1 and b > 1 是常量 并且 f (n) 是一个渐近正函数， 为了使用这个主定理，您需要考虑下列三种情况：
+
+
+   快速排序的每一次划分把一个 问题分解成两个子问题，其中的关系可以用下式表示：
+
+   T[n] = 2T[n/2] + O(n) 其中O(n)为PARTITION()的时间复杂度，对比主定理，
+
+ T [n] = aT[n/b] + f (n)
+
+我们的快速排序中：a = 2, b = 2, f(n) = O(n)
+
+
+
+那么为什么还有最坏情况呢？
+
+考虑如下极端情况，
+
+T[n] = T[n-1] + T[1] + O(n),
+问题来了，这一次的划分白玩了，划分之后一边是一个，一边是n-1个，这种极端情况的时间复杂度就是O(n2).
+
+
+    </pre>
+      <script>
+          function qSort(list) {
+              if(list.length == 0) {
+                  return [];
+              }
+              var lesser = [];
+              var greater = [];
+              var pivot = list[0];
+              for(var i =1;i<list.length;i++) {
+                console.log("基准值： "+pivot+"当前元素："+list[i]);
+                  if(list[i] < pivot) {-++
+                       console.log("移动 "+list[i]+" 到左边 ");
+                       lesser.push(list[i]);
+                  }else {
+                       console.log("移动："+list[i]+" 到右边 ");
+                       greater.push(list[i]);
+                  }
+              }
+              return qSort(lesser).concat(pivot,qSort(greater));
+          }
+         var a = [];
+         for(var i =0;i<10;++i) {
+            a[i] = Math.floor((Math.random()*100)+1);
+         }
+         console.log(a);
+         console.log(qSort(a));
+      </script>
+  </body>
+</html>

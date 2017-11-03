@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+   <meta charset="utf-8">
+   <title>插入排序</title>
+   <script src="./CArray.js"></script>
+   <script src="./sportUtilCopy.js"></script>
+   <style>
+   #show{
+     position:relative;
+   }
+   .boxitem{
+       background:black;
+       color:white;
+       height:30px;
+       width:40px;
+       top:0px;
+       position: absolute;
+       font-size: 24px;
+       text-align: center;
+       margin-right:30px;
+       border-radius: 5px;
+   }
+   </style>
+  </head>
+  <body>
+     <p>插入排序</p>
+     <pre>从数组的第二项开始向后循环，通过将较大的数据移动到右侧，为数组左侧腾出位置</pre>
+     <div id="show">
+     </div>
+      <script>
+           function insertionSort(){
+            var temp,inner;
+            var originDataStore = this.dataStore.slice(0);
+            var boxItemList = document.getElementsByClassName('boxitem');
+              for(var outer = 1;outer <= this.dataStore.length-1;++outer) {
+                   temp = this.dataStore[outer];
+                   inner = outer;
+                   for(var inner = outer;inner>0 && (this.dataStore[inner-1]>=temp);inner--){
+                  //  while(inner>0 && (this.dataStore[inner-1]>=temp)) {
+                    //  console.log(internalOuter);
+                     (function(internalTempInner){
+                       var internalOuter = outer;
+                       var tempMax = originDataStore[outer]
+                      //  console.log(internalOuter);
+                       setTimeout(function(){
+                             console.log(internalOuter);
+                               move(boxItemList[internalTempInner],{top:60},function(){
+                                   if(originDataStore[internalTempInner]>=tempMax){
+                                         move(boxItemList[internalTempInner],{top:0},function(){
+                                           var cloneNode= boxItemList[internalTempInner].cloneNode(true);
+                                           boxItemList[internalTempInner].parentNode.insertBefore(cloneNode,boxItemList[internalTempInner]);
+                                           move(cloneNode,{left:(internalTempInner+1)*60},function(){
+                                            //  move(cloneNode,{top:0})
+
+                                            originDataStore[internalTempInner+1] =originDataStore[internalTempInner];
+                                            boxItemList[internalTempInner+1].parentNode.removeChild(boxItemList[internalTempInner+2])
+                                            boxItemList[internalTempInner].parentNode.insertBefore(boxItemList[internalTempInner+1],cloneNode);
+                                             if(internalTempInner<=0){
+                                                var cloneNodeMax= cloneNode.cloneNode(true);
+                                                    cloneNodeMax.innerHTML= tempMax;
+                                                    cloneNodeMax.style.background = "#20A0FF"
+                                                    cloneNode.parentNode.insertBefore(cloneNodeMax,boxItemList[internalTempInner]);
+                                                move(cloneNodeMax,{left:0},function(){
+                                                     originDataStore[0] =tempMax;
+                                                     boxItemList[internalTempInner+1].parentNode.removeChild(boxItemList[internalTempInner+1])
+                                                     cloneNodeMax.style.background = "black"
+                                                    //  boxItemList[internalTempInner].parentNode.insertBefore(boxItemList[internalTempInner],boxItemList[internalOuter]);
+                                                    //  boxItemList[internalTempInner].parentNode.insertBefore(boxItemList[internalOuter],boxItemList[internalTempInner]);
+                                                 })
+
+                                             }
+                                             if(originDataStore[internalTempInner-1]<tempMax){
+                                               var cloneNodeMax= cloneNode.cloneNode(true);
+                                                   cloneNodeMax.innerHTML= tempMax;
+                                                   cloneNode.parentNode.insertBefore(cloneNodeMax,boxItemList[internalTempInner]);
+
+                                                 move(cloneNodeMax,{left:internalTempInner*60},function(){
+                                                   originDataStore[internalTempInner] =tempMax;
+                                                  boxItemList[internalTempInner+1].parentNode.removeChild(boxItemList[internalTempInner+1])
+                                                 })
+                                             }
+                                            //  if(boxItemList.length>numElements&&internalTempInner>0&&originDataStore[internalTempInner-1]>=tempMax){
+                                            //      boxItemList[internalTempInner+1].parentNode.removeChild(boxItemList[internalTempInner])
+                                            //   }
+                                           })
+                                         })
+
+
+                                   }else {
+                                     move(boxItemList[internalTempInner],{top:0})
+                                     if(internalTempInner<=0){
+                                         move(boxItemList[internalOuter],{left:0})
+                                     }
+                                     if(originDataStore[internalTempInner-1]<originDataStore[internalOuter]){
+                                         move(boxItemList[internalOuter],{left:internalTempInner*60})
+                                     }
+                                    //  move(boxItemList[internalOuter],{left:(internalTempInner-1)*60})
+                                   }
+                               })
+                       },(outer-internalTempInner)*1000+(outer*(outer-1)/2)*1000);
+                     })(inner-1)
+                     if(this.dataStore[inner-1]>=temp){
+                       this.dataStore[inner] = this.dataStore[inner-1];
+                     }
+                      // --inner;
+                   }
+                   this.dataStore[inner] = temp;
+              }
+           }
+           var numElements = 10;
+           var myNums = new CArray(numElements);
+           myNums.insertionSort = insertionSort;
+           myNums.setData();
+           console.log(myNums.toString());
+           myNums.insertionSort();
+           console.log(myNums.toString());
+      </script>
+  </body>
+</html>

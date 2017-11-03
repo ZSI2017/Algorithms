@@ -1,4 +1,4 @@
-// ;showLoading();
+showLoading();
 Zepto(function ($) {
 	FastClick.attach(document.body);
 	/**

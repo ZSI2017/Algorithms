@@ -1,9 +1,7 @@
 /**
- *
- *  @method      CArray
- *  @param       {[type]} numElements [description]
- *  @constructor
- */
+ * 数组测试平台类
+ **/
+
 function CArray(numElements) {
 	this.dataStore = [];
 	this.pos = 0;

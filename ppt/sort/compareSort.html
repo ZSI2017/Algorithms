@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>比较基础排序</title>
+  <script src="./CArray.js"></script>
+</head>
+
+<body>
+  <pre>
+         使用 getTime() 获取基础排序的花费时间。对三种基础排序进行比较
+     </pre>
+
+  <script>
+    //   冒泡排序
+    function bubbleSort() {
+      var numElements = this.dataStore.length;
+      var boxItemList = document.getElementsByClassName('boxitem');
+      //  console.log(boxItemList);
+      var temp;
+      var originDataStore = this.dataStore.slice(0);
+      for (var outer = numElements; outer >= 2; --outer) {
+        for (var inner = 0; inner < outer - 1; ++inner) {
+          if (this.dataStore[inner] > this.dataStore[inner + 1]) {
+            swap(this.dataStore, inner, inner + 1);
+          }
+        }
+        // console.log(this.toString());
+      }
+    }
+
+    // 选择排序
+    function selectionSort() {
+      var min, temp;
+      var _self = this;
+      var originDataStore = this.dataStore.slice(0);
+      var boxItemList = document.getElementsByClassName('boxitem');
+      for (var outer = 0; outer <= this.dataStore.length - 2; ++outer) {
+        min = outer;
+        var tempMin = outer;
+        for (var tempinner = outer + 1; tempinner <= this.dataStore.length - 1; ++tempinner) {
+          if (this.dataStore[tempinner] < this.dataStore[min]) {
+            min = tempinner;
+          }
+        }
+        swap(this.dataStore, outer, min);
+      }
+    }
+
+    // 插入排序
+    function insertionSort() {
+      var temp, inner;
+      var originDataStore = this.dataStore.slice(0);
+      var boxItemList = document.getElementsByClassName('boxitem');
+      for (var outer = 1; outer <= this.dataStore.length - 1; ++outer) {
+        temp = this.dataStore[outer];
+        inner = outer;
+        for (var inner = outer; inner > 0 && (this.dataStore[inner - 1] >= temp); inner--) {
+          if (this.dataStore[inner - 1] >= temp) {
+            this.dataStore[inner] = this.dataStore[inner - 1];
+          }
+        }
+        this.dataStore[inner] = temp;
+      }
+    }
+
+    var numElements = 10000;
+    var nums = new CArray(numElements);
+    nums.bubbleSort = bubbleSort;
+    nums.selectionSort = selectionSort;
+    nums.insertionSort = insertionSort;
+    nums.setData();
+    var start = new Date().getTime();
+    nums.bubbleSort();
+    console.log("冒泡排序后的数据：");
+    console.table([nums.dataStore]);
+    var stop = new Date().getTime();
+    var elapsed = stop - start;
+    console.log("对" + numElements + "个元素执行冒泡排序消耗的时间为：" + elapsed + "毫秒");
+
+    nums.setData();
+    start = new Date().getTime();
+    nums.selectionSort();
+    console.log("选择排序后的数据: ");
+    console.table([nums.dataStore]);
+    stop = new Date().getTime();
+    elapsed = stop - start;
+    console.log("对 " + numElements + "个元素执行选择排序消耗的时间为：" + elapsed + " 毫秒");
+
+    nums.setData();
+    start = new Date().getTime();
+    nums.insertionSort();
+    console.log("插入排序后的数据：", nums.dataStore);
+    console.table([nums.dataStore]);
+    stop = new Date().getTime();
+    elapsed = stop - start;
+    console.log("对 " + numElements + "个元素执行插入排序消耗的时间为：" + elapsed + " 毫秒");
+  </script>
+</body>
+
+</html>
