@@ -7,19 +7,40 @@
         "browser": true,
         "node": true
     },
+    "globals":{
+         "Zepto":true,
+         "FastClick":true,
+         "showLoading":true,
+         "ant":true,
+         "BizLog":true,
+         "hideLoading":true,
+         "AlipayJSBridge":true
+    },
     "rules":{
-       "no-console":"off",
-       "eqeqeq":"off",
-       "quotes":"off",
+       "vars-on-tap":[0],
+       "no-console":[0],
+       "no-alert":[0],
+       "eqeqeq":[0],
+       "quotes":[0],
        "spaced-comment": ["error","always",{"exceptions":["-","+"]}],
        "linebreak-style": ["error", "windows"],
        "indent":["error","tab"],
-       "no-tabs":"off",
-       "no-var":"off",
-       "no-plusplus":"off",
-       "no-mixed-operators":"off",
-       "no-unused-vars":"off",
-       "no-use-before-define":"off",
-       "vars-on-tap":"off"
+       "no-tabs":[0],
+       "no-var":[0],
+       "no-plusplus":[0],
+       "no-mixed-operators":[0],
+       "no-unused-vars":[0],
+       "no-use-before-define":[0],
+       "camelcase": ["error", {"properties": "never"}],
+       "prefer-destructuring": ["error", {
+                "array": false,
+                "object": false
+              }, {
+                "enforceForRenamedProperties": false
+              }],
+         "func-names": [0],
+          "no-useless-concat": [0],
+          "no-multi-str":[0],
+          "no-underscore-dangle":[0]
     }
 }

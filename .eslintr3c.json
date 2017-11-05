@@ -1,0 +1,25 @@
+{
+    "extends": "airbnb",
+    "plugins": [
+        "react"
+    ],
+    "env": {
+        "browser": true,
+        "node": true
+    },
+    "rules":{
+       "no-console":"off",
+       "eqeqeq":"off",
+       "quotes":"off",
+       "spaced-comment": ["error","always",{"exceptions":["-","+"]}],
+       "linebreak-style": ["error", "windows"],
+       "indent":["error","tab"],
+       "no-tabs":"off",
+       "no-var":"off",
+       "no-plusplus":"off",
+       "no-mixed-operators":"off",
+       "no-unused-vars":"off",
+       "no-use-before-define":"off",
+       "vars-on-tap":"off"
+    }
+}
